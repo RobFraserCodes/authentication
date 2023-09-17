@@ -1,55 +1,53 @@
-'use client'
-
-import { useState } from 'react'
+import React from 'react'
 import { navigation } from '@/data/navigation'
+import Link from 'next/link'
+import { siteDetails } from '@/data/meta'
+import { Button } from './ui/button'
+import { Bars3Icon, PlayCircleIcon } from '@heroicons/react/24/solid'
 import SignInButton from './sign-in-button'
-import Image from 'next/image'
-import { PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
 
-export default function Header() {
-  const [state, setState] = useState(false)
-
+export default function Menu() {
   return (
-      <nav className="bg-white w-full border-b md:border-0 md:static">
-          <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-              <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                    <a href="/">
-                        <Image
-                            src="https://www.floatui.com/logo.svg" 
-                            width={120} 
-                            height={50}
-                            alt="Float UI logo"
-                        />
-                    </a>
-                  <div className="md:hidden">
-                      <button className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
-                          onClick={() => setState(!state)}
-                      >
-                          {
-                              state ? ( <PlusIcon className="h-6 w-6" /> ) : ( <MinusIcon className="h-6 w-6" /> )
-                          }
-                      </button>
-                  </div>
-              </div>
-              <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${ state ? 'block' : 'hidden'}`}>
-                  <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-                      {
-                          navigation.map((item, idx) => {
-                              return (
-                                <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                                    <a href={item.path}>
-                                        { item.title }
-                                    </a>
-                                </li>
-                              )
-                          })
-                      }
-                  </ul>
-              </div>
-              <div className="hidden md:inline-block">
+    <header className="">
+    <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 uppercase">
+        <div className="flex h-24 items-center justify-between">
+        <div className="flex-1 md:flex md:items-center md:gap-12">
+            <Link className="block" href="/">
+                <div className='flex'>
+                    <span className="sr-only">Home</span>
+                    <PlayCircleIcon className="h-8 w-8 text-gray-800" />
+                    <h1 className='text-xl font-bold text-gray-800 sm:text-3xl uppercase'>{siteDetails.title}</h1>
+                </div>
+            </Link>
+        </div>
+
+        <div className="md:flex md:items-center md:gap-12">
+            <nav aria-label="Global" className="hidden md:block">
+            <ul className="flex items-center gap-6 text-sm">
+                {navigation.map((item) => (
+                    <li key={item.title}>
+                        <Link href={item.path}
+                            className="font-medium text-gray-900">{item.title}
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            </nav>
+
+            <div className="flex items-center gap-4">
+            <div className="sm:flex sm:gap-4">
                 <SignInButton />
-              </div>
-          </div>
-      </nav>
+            </div>
+
+            <div className="block md:hidden">
+                <Button>
+                    <Bars3Icon className="h-6 w-6" />
+                </Button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </header>
   )
 }

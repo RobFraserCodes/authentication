@@ -75,7 +75,6 @@ export default function SignInButton() {
         ) : (
             <Button
                 onClick={() => signIn()}
-                className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md hover:bg-gray-50 focus:outline-none"
             >
                 Sign in
             </Button>
