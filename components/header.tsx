@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { navigation } from '@/data/navigation'
+import SignInButton from './sign-in-button'
 
 export default function Header() {
   const [state, setState] = useState(false)
@@ -52,9 +53,7 @@ export default function Header() {
                   </ul>
               </div>
               <div className="hidden md:inline-block">
-                <a href="/api/auth/signout?callbackUrl=%2F" className="py-3 px-4 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow">
-                    Sign Out
-                </a>
+                <SignInButton />
               </div>
           </div>
       </nav>
