@@ -40,7 +40,7 @@ export default function SearchDB() {
   };
 
   return (
-    <div className='mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8'>
+    <div className='mx-auto max-w-screen-xl sm:px-6 lg:px-8 pb-8'>
       <form onSubmit={handleSearch} className="flex align-middle">
         <Input 
           type='search' 
@@ -48,34 +48,41 @@ export default function SearchDB() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <MagnifyingGlassIcon className='w-6 h-6 m-1' />        <button type="submit" className="hidden">Search</button>
+        <MagnifyingGlassIcon className='w-6 h-6 m-1' />
+        <button type="submit" className="hidden">Search</button>
       </form>
       {searchResults.length > 0 && (
         <div className="mt-2 bg-white border rounded">
           {searchResults.map((movie, index) => (
-            <Link 
+            <Link legacyBehavior
               href={`/movie/${movie.id}`}
               key={index}
-              className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
-              onClick={() => setInputValue(movie.title)}
             >
-              {movie.poster_path ? (
-                <Image 
-                  src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} 
-                  alt={movie.title}
-                  className="mr-2 w-16"
-                  width={92}
-                  height={138}
-                />
-              ) : (
-                <div className="mr-2 w-16 h-24 bg-gray-200 flex items-center justify-center">
-                  No Image
+              <a
+                className="flex items-center p-2 hover:bg-gray-200 cursor-pointer"
+                onClick={() => {
+                  setInputValue(movie.title);
+                  setSearchResults([]);  // Clear the search results
+                }}
+              >
+                {movie.poster_path ? (
+                  <Image 
+                    src={`https://image.tmdb.org/t/p/w92${movie.poster_path}`} 
+                    alt={movie.title}
+                    className="mr-2 w-16"
+                    width={92}
+                    height={138}
+                  />
+                ) : (
+                  <div className="mr-2 w-16 h-24 bg-gray-200 flex items-center justify-center">
+                    No Image
+                  </div>
+                )}
+                <div>
+                  {movie.title} 
+                  {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}
                 </div>
-              )}
-              <div>
-                {movie.title} 
-                {movie.release_date ? ` (${new Date(movie.release_date).getFullYear()})` : ''}
-              </div>
+              </a>
             </Link>
           ))}
         </div>

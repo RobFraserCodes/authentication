@@ -2,17 +2,15 @@ import Companies from '@/components/companies'
 import FAQ from '@/components/faq'
 import Hero from '@/components/hero'
 import LatestMovies from '@/components/latest-movies'
-import SearchDB from '@/components/search-database'
-import Image from 'next/image'
+import LatestTVShows from '@/components/latest-tv'
+import WatchedShelf from '@/components/watched-list'
 
 export default function Home() {
   return (
-    <main className=' bg-slate-100'>
-      {/* <Hero /> */}
-      <SearchDB />
+    <main className='bg-background'>
+      <WatchedShelf />
       <LatestMovies />
-      <Companies />
-      <FAQ />
+      <LatestTVShows />
     </main>
   )
 }

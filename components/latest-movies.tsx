@@ -19,7 +19,7 @@ function shuffleArray(array) {
     return array;
 }
 
-export default function Cinema() {
+export default function LatestMovies() {
     const [movies, setMovies] = useState<nowPlaying[]>([]);
     const [randomThreeMovies, setRandomThreeMovies] = useState<nowPlaying[]>([]);
 
@@ -37,13 +37,13 @@ export default function Cinema() {
     }, []);
     
   return (
-    <section>
+    <section className='pt-4'>
         <div className="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
             <h2>Latest Movies</h2>
             {/* Movie previews */}
-            <ul className="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-3">
+            <ul className="grid grid-cols-1 gap-4 mt-4 lg:grid-cols-3">
             {Array.isArray(randomThreeMovies) && randomThreeMovies.map((movie, index) => (
-                <li key={index} className={index === 2 ? "lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1" : ""}>
+                <li key={index} className={index === 2 ? "lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1 round" : ""}>
                 <Link href={`/movie/${movie.id}`} className="relative block group">
                     <Image
                     src={`https://image.tmdb.org/t/p/w780/${movie.backdrop_path}`}

@@ -58,14 +58,14 @@ export default function SignInButton() {
                         <div className="px-1 py-1">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <a
+                                    <Link
                                         href="/api/auth/signout?callbackUrl=%2F"
                                         className={`${
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700'
                                         } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
                                     >
                                         Sign out
-                                    </a>
+                                    </Link>
                                 )}
                             </Menu.Item>
                         </div>
@@ -73,11 +73,7 @@ export default function SignInButton() {
                 </Transition>
             </Menu>
         ) : (
-            <Button
-                onClick={() => signIn()}
-            >
-                Sign in
-            </Button>
+            <Button onClick={() => signIn()}>Sign in</Button>
         )}        
         </>
     )

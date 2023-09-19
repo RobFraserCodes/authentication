@@ -5,10 +5,11 @@ import { siteDetails } from '@/data/meta'
 import { Button } from './ui/button'
 import { Bars3Icon, PlayCircleIcon } from '@heroicons/react/24/solid'
 import SignInButton from './sign-in-button'
+import SearchDB from './search-database'
 
 export default function Menu() {
   return (
-    <header className="">
+    <header className="bg-primary">
     <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 uppercase">
         <div className="flex h-24 items-center justify-between">
         <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -48,6 +49,7 @@ export default function Menu() {
         </div>
         </div>
     </div>
+    <SearchDB />
     </header>
   )
 }
